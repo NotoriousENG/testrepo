@@ -20,7 +20,7 @@ public class TestGame extends ApplicationAdapter {
 	@Override
 	public void render () {
 		if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-			Gdx.gl.glClearColor(0, 1, 0, 1);
+			Gdx.gl.glClearColor(0, 0, 1, 1);
 		}
 		else {
 			Gdx.gl.glClearColor(1, 0, 0, 1);
