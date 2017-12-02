@@ -6,15 +6,23 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class TestGame extends ApplicationAdapter {
 	SpriteBatch batch;
-	Texture img;
+	DeckOfCards popo;
+	Card card;
+	Card [] cardz = new Card[12];
+
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		popo = new DeckOfCards();
+		popo.shuffle(50);
+		for (int i = 0; i < 12; i++) {
+			cardz[i] = popo.deal();
+		}
 	}
 
 	@Override
@@ -27,13 +35,19 @@ public class TestGame extends ApplicationAdapter {
 		}
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(img, 0, 0);
+		int x = 0;
+		for (Card element : cardz) {
+			if (element != null) {
+				batch.draw(element.getFace(), x, 0);
+				x = x + 73;
+			}
+		}
 		batch.end();
 	}
 	
 	@Override
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
 	}
 }
+
